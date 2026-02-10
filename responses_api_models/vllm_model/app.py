@@ -446,6 +446,7 @@ class VLLMConverter(BaseModel):
             for tool_dict in tools:
                 tool_dict = tool_dict.copy()
                 tool_dict.pop("type", None)
+                tool_dict.pop("strict", None)  # Strip strict field (not supported by all providers)
                 responses_create_params["tools"].append(
                     NeMoGymChatCompletionToolParam(type="function", function=NeMoGymFunctionDefinition(**tool_dict))
                 )

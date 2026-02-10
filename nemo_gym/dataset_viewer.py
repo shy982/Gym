@@ -281,14 +281,14 @@ def build_jsonl_dataset_viewer(config: JsonlDatasetViewerConfig) -> Blocks:
         JSON(value=aggregate_dicts, label="Aggregate Metrics", open=False)
 
         item_dropdown = Dropdown(choices=choices, value=0, label="Samples")
+        # Note: 'type' parameter removed for Gradio compatibility
         chatbot = Chatbot(
             value=select_item(0),
-            type="messages",
             height="80vh",
             layout="panel",
             label="Rollout",
         )
-        item_dropdown.select(fn=select_item, inputs=item_dropdown, outputs=chatbot, show_api=False)
+        item_dropdown.select(fn=select_item, inputs=item_dropdown, outputs=chatbot)
 
     return demo
 
